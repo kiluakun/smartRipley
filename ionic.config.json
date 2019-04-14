@@ -1,0 +1,14 @@
+{
+  "name": "smartRipley",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "e8e88556",
+  "proxies": [
+    {
+      "path": "/services",
+      "proxyUrl": "https://clripley-qa.azure-api.net/"
+    }
+  ]
+}
