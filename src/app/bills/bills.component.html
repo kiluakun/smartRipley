@@ -1,0 +1,43 @@
+<div class="grd">
+  <div class="grd-row">
+    <div class="grd-row-col-2">
+      <h1>🐱 Boletas 🐱</h1>
+      <form (ngSubmit)="newBill(newBillForm.value)" [formGroup]="newBillForm">
+        <input type="hidden" formControlName="id">
+
+        <label for="nidBillombre">Nro. Boleta</label>
+        <input type="text" formControlName="idBill">
+
+        <label for="active">Estado</label>
+        <input type="url" formControlName="active">
+
+        <label for="itemCount">Cantidad Productos</label>
+        <input type="url" formControlName="itemCount">
+
+        <label for="totals">Total Boleta</label>
+        <input type="url" formControlName="totals">
+
+        <input type="submit" class="btn--blue btn--add" [disabled]="!newBillForm.valid" value="Agregar">
+      </form>
+    </div>
+    <div class="grd-row-col-4">
+      <div class="cats_container">
+        <div class="media" *ngFor="let bill of bills">
+          <div class="media-figure">
+            <img [src]="bill.data.items.fullImage">
+          </div>
+          <div class="media-body">
+            <p>{{bill.data.idBill}}</p>
+            <p>{{bill.data.active}}</p>
+            <p>{{bill.data.itemCount}}</p>
+            <p>{{bill.data.totals}}</p>
+            <div class="btn--group">
+              <button class="btn--green btn--s btn1" (click)="editBill(bill.id)">Editar</button>
+              <button class="btn--red btn--s btn2" (click)="deleteBill(bill.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

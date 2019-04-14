@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      smartRipley {{status}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="stepOne">
+  <h1>Paso 1</h1>
+  <ion-item>
+    <ion-input type="text" placeholder="Qr Data" [(ngModel)]="qrData">
+    </ion-input>
+  </ion-item>
+  <button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Create Code</button>
+  <button ion-button full icon-left (click)="scanCode()"><ion-icon name="qr-scanner"></ion-icon>Captura tu producto</button>
+  <button *ngIf="carritoFake != undefined && carritoFake.length > 0" ion-button full icon-left (click)="viewBag()"><ion-icon name="basket"></ion-icon>Ver carrito</button>
+  <button *ngIf="carritoFake != undefined && carritoFake.length > 0" ion-button full icon-left (click)="payment()"><ion-icon name="card"></ion-icon>Pagar</button>
+
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [(qrc-value)]="createdCode" 
+      qrc-class = "aclass"
+      qrc-errorCorrectionLevel = "L">
+    </ngx-qrcode>
+  </ion-card>
+
+</ion-content>
+
+<ion-content padding *ngIf="stepTwo">
+  <h1>Paso 2</h1>
+  <ion-card *ngIf='currentProduct != undefined'>
+    <ion-card-content>
+      <label>{{ currentProduct.descripcion }}</label>
+      <label>${{currentProduct.precioVigente}}</label>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button full icon-left (click)="addToBag()"><ion-icon name="add-circle"></ion-icon>Agergar a tu bolsa</button>
+
+</ion-content>
